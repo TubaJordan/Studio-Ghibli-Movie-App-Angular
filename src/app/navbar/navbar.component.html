@@ -1,0 +1,19 @@
+<mat-toolbar class="nav-bar">
+
+    <!-- <div> -->
+    <a mat-button (click)="navigateToMovieView()" style="flex-grow: 0;" class="logo-image">
+        <img [src]="imagePath" alt="" class="nav-bar-image">
+    </a>
+    <!-- </div> -->
+    <a mat-button (click)="navigateToMovieView()" style="flex-grow: 0;" class="logo">
+        <p>Ghibli Movie Collection</p>
+    </a>
+    <span class="filler-nav-bar"></span>
+
+    <div class="nav-buttons-container">
+        <a mat-button (click)="navigateToProfileView"
+            class="nav-buttons">{{this.username}}<mat-icon>account_circle</mat-icon></a>
+        <a mat-button (click)="logout()" class="nav-buttons logout">Logout<mat-icon>logout</mat-icon></a>
+    </div>
+
+</mat-toolbar>
