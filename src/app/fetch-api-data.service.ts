@@ -115,16 +115,23 @@ export class FetchApiDataService {
     }).pipe(map(this.extractResponseData), catchError(this.handleError))
   }
 
-  //delete user
+  // delete user
   deleteUser(): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
-    return this.http.delete(apiURL + 'users/' + user._id, {
+
+    console.log("user log", user);
+    console.log("user.username log", user.username);
+
+    return this.http.delete(apiURL + 'users/' + user.username, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
-    }).pipe(catchError(this.handleError))
+    }).pipe(
+      catchError(this.handleError)
+    );
   }
+
 
   //delete favorite movie
   deleteFavoriteMovie(movieId: string): Observable<any> {
@@ -157,5 +164,6 @@ export class FetchApiDataService {
     }
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
+
 
 }

@@ -32,11 +32,11 @@ export class UserLoginFormComponent implements OnInit {
       localStorage.setItem('Username', data.user.Username)
       this.router.navigate(["movies"]);
       this.dialogRef.close();
-      this.snackBar.open('you\'ve been logged in', 'OK', {
+      this.snackBar.open("You've been logged in!", "OK", {
         duration: 2000
       });
     }, () => {
-      this.snackBar.open('sorry, something went wrong. please try again', 'OK', {
+      this.snackBar.open("Sorry, something went wrong. Please try again", "OK", {
         duration: 2000
       });
     })

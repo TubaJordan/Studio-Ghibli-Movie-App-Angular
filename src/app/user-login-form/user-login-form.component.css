@@ -1,0 +1,64 @@
+.login-card-main {
+    box-shadow: 5px 5px 10px rgba(46, 46, 46, 0.75);
+    background-color: rgb(236, 233, 224);
+    border-radius: 0 !important;
+    border: 4px solid rgb(46, 46, 46);
+}
+
+.login-card-title {
+    margin: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    color: rgba(46, 46, 46, 1);
+    font-size: 25px;
+}
+
+.login-card-subtitle {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: rgba(46, 46, 46, 1);
+    font-style: italic;
+}
+
+.title-container {
+    border-bottom: 1px solid rgb(46, 46, 46);
+    margin-bottom: 20px;
+}
+
+.login-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.login-button {
+    background-color: rgb(199, 196, 186) !important;
+    border: 2px solid rgb(46, 46, 46);
+    color: rgb(46, 46, 46);
+    border-radius: 1px;
+}
+
+.login-button:hover {
+    background-color: rgba(107, 104, 92, 0.829) !important;
+}

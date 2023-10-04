@@ -1,11 +1,15 @@
 <div class="main-page">
-    <h1>
-        Welcome to myFlix!
-    </h1>
-    <button mat-raised-button (click)="openUserRegistrationDialog()" style="margin-right: 10px;" color="primary">
-        Sign Up
-    </button>
-    <button mat-raised-button (click)="openUserLoginDialog()" style="margin-right: 10px;" color="primary">
-        Login
-    </button>
+
+    <img [src]="imagePath" alt="">
+    <div class="title-container">
+        <h1 class="title-text">
+            Ghibli Movie Collection
+        </h1>
+    </div>
+
+    <div class="welcome-button-container">
+        <button (click)="openUserRegistrationDialog()" class="welcome-button1">Sign Up</button>
+
+        <button (click)="openUserLoginDialog()" class="welcome-button2">Login</button>
+    </div>
 </div>
