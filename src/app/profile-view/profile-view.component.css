@@ -1,0 +1,16 @@
+.profile-view-container {
+    padding-top: 75px;
+}
+
+.favorites-movie-container {
+    text-align: center;
+}
+
+.profile-and-update {
+    width: 100%;
+}
+
+.flex-item {
+    flex: 1;
+    text-align: center;
+}

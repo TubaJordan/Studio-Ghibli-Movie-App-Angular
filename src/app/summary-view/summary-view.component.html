@@ -1,0 +1,16 @@
+<mat-card class="sum-dialog">
+    <mat-card-header class="sum-dialog-header">
+        <mat-card-title>
+            <h2 class="sum-dialog-title">{{ data.title }}</h2>
+        </mat-card-title>
+        <span class="fill-remaining-space"></span>
+        <button class="summary-close-button" aria-label="Button to close summary details" mat-dialog-close
+            color="primary">
+            X
+        </button>
+    </mat-card-header>
+    <mat-dialog-content class="sum-dialog-content">
+        <h4 class="highlight-text">Summary:</h4>
+        <p>{{ data.summary }}</p>
+    </mat-dialog-content>
+</mat-card>

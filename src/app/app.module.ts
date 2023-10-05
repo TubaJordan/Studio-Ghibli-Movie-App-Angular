@@ -26,6 +26,11 @@ import { MatIconModule } from "@angular/material/icon";
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { DeleteUserComponent } from './delete-user/delete-user.component';
+import { DirectorViewComponent } from './director-view/director-view.component';
+import { GenreViewComponent } from './genre-view/genre-view.component';
+import { SummaryViewComponent } from './summary-view/summary-view.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 
 const appRoutes: Routes = [
@@ -45,6 +50,11 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     NavbarComponent,
     ProfileViewComponent,
+    DeleteUserComponent,
+    DirectorViewComponent,
+    GenreViewComponent,
+    SummaryViewComponent,
+    UpdateUserComponent,
   ],
   imports: [
     BrowserModule,

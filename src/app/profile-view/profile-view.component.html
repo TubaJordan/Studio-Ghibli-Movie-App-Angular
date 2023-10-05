@@ -1,56 +1,36 @@
 <app-navbar></app-navbar>
+
 <div class="profile-view-container">
-    <div class="profile-info">
-        <h1>User Profile</h1>
-        <div class="user-profile-info">
-            <span class="profile-field"><b>Username:</b></span><span class="profile-field-data">{{user.username}}</span>
-            <span class="profile-field"><b>E-mail:</b></span><span class="profile-field-data">{{user.email}}</span>
-            <span class="profile-field"><b>Birth date:</b></span><span
-                class="profile-field-data">{{user.birthDate.slice(0,10)}}</span>
-        </div>
-        <h1 style="margin-top : 60px">Your favorite movies</h1>
-        <ul class="favorite-movies-list">
-            <li *ngFor="let movieTitle of favoriteMoviesByTitle;" class="favorite-movies-list-element">{{movieTitle}}
-            </li>
-        </ul>
-    </div>
 
-    <div class="update-profile-form">
-        <h1>
-            Update Profile
-        </h1>
-        <form #userForm="ngForm" (ngSubmit)="updateUser()">
-            <div class="update-user-profile-form">
+    <div class="profile-and-update">
+        <div class="profile-info flex-item">
 
-                <label for="username"><b>Username:</b></label><input matInput [(ngModel)]="updatedUser.username"
-                    id="username" placeholder="Username" type="text" name="username" minlength="6"
-                    class="update-user-profile-input">
-                <div></div>
-
-                <label for="email"><b>Email:</b></label><input matInput [(ngModel)]="updatedUser.email" type="email"
-                    id="email" placeholder="Email" name="email" class="update-user-profile-input">
-                <div></div>
-
-                <label for="password"><b>Password:</b></label><input matInput [(ngModel)]="updatedUser.password"
-                    type="password" id="password" placeholder="Password" name="password"
-                    class="update-user-profile-input" minlength="8">
-                <div></div>
-
-
-                <label for="birthdate"><b>Birth date:</b></label><input matInput [(ngModel)]="updatedUser.birthDate"
-                    type="date" id="birthdate" placeholder="Birth date" name="Birth date"
-                    class="update-user-profile-input">
-                <div></div>
-                <div></div>
-                <div>
-                    <button type="button" (click)="userForm.ngSubmit.emit()"
-                        class="profile-form-button update-button">Update
-                        User</button>
-                    <button type="button" (click)="deleteUser()" class="profile-form-button delete-button">Delete
-                        User</button>
+            <div class="profile-container">
+                <h1>User Profile</h1>
+                <div class="user-profile-info">
+                    <p>Username: {{user.username}}</p>
+                    <p>E-mail: {{user.email}}</p>
+                    <p>Birth date: {{user.birthDate.slice(0,10)}}</p>
                 </div>
-
             </div>
-        </form>
+
+            <button type="button" (click)="openUserUpdateDialog()" class="profile-form-button update-button">Update
+                User</button>
+            <button type="button" (click)="openDeleteUserDialog()" class="profile-form-button delete-button">Delete
+                User</button>
+
+        </div>
     </div>
+
+    <div>
+        <div class="favorites-movie-container">
+            <h1 style="margin-top : 60px">Your Favorite Movies</h1>
+            <ul class="favorite-movies-list">
+                <li *ngfor="let movieTitle of favoriteMoviesByTitle;" class="favorite-movies-list-element">
+                    {{movieTitle}}
+                </li>
+            </ul>
+        </div>
+    </div>
+
 </div>

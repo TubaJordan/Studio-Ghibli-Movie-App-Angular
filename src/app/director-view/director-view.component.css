@@ -1,0 +1,7 @@
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.dir-close-button {
+    height: 30px;
+}
