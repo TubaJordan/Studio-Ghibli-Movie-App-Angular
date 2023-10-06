@@ -21,32 +21,21 @@ export class DeleteUserComponent implements OnInit {
   ngOnInit(): void { }
 
   deleteUser(): void {
-    // this.fetchApiData.deleteUser().subscribe(
-    //   () => {
-    //     localStorage.clear();
-    //     this.dialogRef.close();
-    //     this.router.navigate(["welcome"]);
-    //     this.snackBar.open("Account has been deleted", "OK", {
-    //       duration: 3000,
-    //     });
-    //   },
-    //   (result) => {
-    //     this.snackBar.open("Error has occured in the dialog", "OK", {
-    //       duration: 2000,
-    //     });
-    //   }
-    // );
     this.fetchApiData.deleteUser().subscribe(
       () => {
         localStorage.clear();
         this.dialogRef.close();
         this.router.navigate(["welcome"]);
-        this.snackBar.open("Account was deleted", "OK", {
+        this.snackBar.open("Account has been deleted", "OK", {
           duration: 3000,
-        })
-      })
-
-
+        });
+      },
+      (result) => {
+        this.snackBar.open("Error has occured in the dialog", "OK", {
+          duration: 2000,
+        });
+      }
+    );
   }
 
   closeDialog(): void {
