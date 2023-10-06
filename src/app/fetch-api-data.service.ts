@@ -117,7 +117,7 @@ export class FetchApiDataService {
   editUser(updatedUser: any): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
-    return this.http.put(apiURL + 'users/' + user.Username, updatedUser, {
+    return this.http.put(apiURL + 'users/' + user.username, updatedUser, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
@@ -133,7 +133,8 @@ export class FetchApiDataService {
     console.log("user.username log", user.username);
     console.log("Is the URL correct", (apiURL + 'users/' + user.username));
     console.log("token", token);
-    console.log("type check", typeof user.username)
+    console.log("type check, user.username", typeof user.username)
+    console.log("type check, user", typeof user)
 
     return this.http.delete(apiURL + 'users/' + user.username, {
       headers: new HttpHeaders({

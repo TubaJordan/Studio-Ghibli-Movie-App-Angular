@@ -5,14 +5,18 @@
             <h1 class="dir-dialog-title">{{ data.title }}</h1>
         </mat-card-title>
         <span class="fill-remaining-space"></span>
-        <button class="dir-close-button" aria-label="Close the director details button" mat-dialog-close>X</button>
+        <button class="dir-close-button" aria-label="Close the director details button"
+            mat-dialog-close>&#10008;</button>
     </mat-card-header>
 
     <mat-dialog-content class="dir-dialog-content">
-        <h3 class="highlight-text">Directed by: {{ data.name }}</h3>
-        <h4>Birth: {{ data.birthyear }}</h4>
-        <h4>Death: {{ data.deathyear }}</h4>
-        <p>{{ data.bio }}</p>
+        <p><span class="bold-text">Director: </span><span class="normal-text">{{ data.name }}</span></p>
+        <p><span class="bold-text">Bio: </span><span class="normal-text">{{ data.bio }}</span></p>
+        <div class="birth-death-container">
+            <p class="birth-text"><span class="bold-text">Birth: </span><span class="normal-text">{{ data.birthyear
+                    }}</span></p>
+            <p><span class="bold-text">Death: </span><span class="normal-text">{{ data.deathyear }}</span></p>
+        </div>
     </mat-dialog-content>
 
 </mat-card>

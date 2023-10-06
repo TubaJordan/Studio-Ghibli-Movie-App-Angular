@@ -20,7 +20,6 @@ export class MovieCardComponent {
   movie: any = "";
   favorites: any[] = [];
 
-
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -36,6 +35,14 @@ export class MovieCardComponent {
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
+
+      this.movies.sort((a: any, b: any) => {
+        const titleA = a.title.toLowerCase();
+        const titleB = b.title.toLowerCase();
+        return titleA.localeCompare(titleB);
+      })
+
+
       console.log(this.movies);
       return this.movies;
     });

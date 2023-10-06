@@ -83,6 +83,11 @@ img {
     width: 380px;
 }
 
+.genre-name {
+    font-size: 8px;
+    margin: 0;
+}
+
 @media screen and (max-width: 768px) {
     .movie-card-box {
         margin: 20px;
