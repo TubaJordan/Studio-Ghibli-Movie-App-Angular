@@ -31,7 +31,8 @@ export class DeleteUserComponent implements OnInit {
         });
       },
       (result) => {
-        this.snackBar.open("Error has occured in the dialog", "OK", {
+        console.error("Error response from server:", result);
+        this.snackBar.open("Error has occurred in the dialog", "OK", {
           duration: 2000,
         });
       }

@@ -1,47 +1,38 @@
-<app-navbar></app-navbar>
-
 <div class="movie-card-box">
-
-    <mat-card *ngFor="let movie of movies" class="movie-card-card">
-
+    <mat-card class="movie-card-card">
         <div class="card-container">
             <p class="decor"></p>
             <mat-card-title class="movie-title">{{movie.title}}</mat-card-title>
             <p class="decor bottom-decor"></p>
 
             <div class="image-container">
-                <img src={{movie.imageUrl}} alt={{movie.title}} />
+                <img src="{{movie.imageUrl}}" alt="{{movie.title}}" />
             </div>
+
             <mat-card-subtitle class="director">Directed by: {{movie.director.name}}</mat-card-subtitle>
             <p class="decor top-decor"></p>
+
             <mat-card-actions class="button-container">
                 <button mat-button class="genre-btn extra-button"
                     (click)="openGenre(movie.genre.name, movie.title, movie.genre.description)">
-                    Genre <p class="genre-name">{{movie.genre.name[0].toUpperCase() +
-                        movie.genre.name.slice(1)}}</p>
+                    Genre
+                    <p class="genre-name">{{movie.genre.name[0].toUpperCase() + movie.genre.name.slice(1)}}</p>
                 </button>
+
                 <button mat-button class="director-btn extra-button"
                     (click)="openDirector(movie.director.name, movie.title)">
                     Director
                 </button>
+
                 <button mat-button class="synopsis-btn extra-button" (click)="openSummary(movie.title)">
                     Synopsis
                 </button>
 
-                <mat-icon *ngIf="!isFavorite(movie._id)" (click)="addToFavorites(movie._id)"
-                    class="favorite-button-border">
-                    favorite_outline
-                </mat-icon>
-
-
-                <mat-icon *ngIf="isFavorite(movie._id)" (click)="removeFromFavorites(movie._id)"
-                    class="favorite-button">favorite
-                </mat-icon>
+                <mat-icon (click)="removeFromFavorites(movie._id)">favorite</mat-icon>
 
             </mat-card-actions>
+
             <p class="decor"></p>
         </div>
-
     </mat-card>
-
 </div>

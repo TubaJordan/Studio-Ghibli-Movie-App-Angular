@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service'
 import { DirectorViewComponent } from '../director-view/director-view.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,19 +8,17 @@ import { GenreViewComponent } from '../genre-view/genre-view.component';
 import { SummaryViewComponent } from '../summary-view/summary-view.component';
 
 @Component({
-  selector: 'app-movie-card',
-  templateUrl: './movie-card.component.html',
-  styleUrls: ['./movie-card.component.css']
+  selector: 'app-favorite-movie-card',
+  templateUrl: './favorite-movie-card.component.html',
+  styleUrls: ['./favorite-movie-card.component.css']
 })
 
-export class MovieCardComponent implements OnInit {
-  @Input() movie: any
+export class FavoriteMovieCardComponent implements OnInit {
+  @Input() movie: any;
+  @Output() movieRemoved = new EventEmitter<string>();
 
-  @Input() fetchAll: boolean = true;
-
-  movies: any[] = [];
-  genre: any = "";
-  director: any = "";
+  genre: any = {};
+  director: any = {};
   favorites: any[] = [];
 
   constructor(
@@ -31,34 +29,8 @@ export class MovieCardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.fetchAll) {
-      this.getMovies();
-    }
     this.getFavorites();
   }
-
-  getMovies(): void {
-    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-      this.movies = resp;
-      this.movies.sort((a: any, b: any) => {
-        const titleA = a.title.toLowerCase();
-        const titleB = b.title.toLowerCase();
-        return titleA.localeCompare(titleB);
-      })
-      return this.movies;
-    });
-  }
-
-  getFavorites(): void {
-    this.fetchApiData.getFavoriteMovies().subscribe((resp: any) => {
-      this.favorites = resp.favoriteMovies;
-    });
-  }
-
-  isFavorite(id: string): boolean {
-    return Array.isArray(this.favorites) && this.favorites.includes(id);
-  }
-
 
   openGenre(name: string, title: string, description: string): void {
     this.fetchApiData.getOneGenre(name).subscribe((resp: any) => {
@@ -105,14 +77,18 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  addToFavorites(id: string): void {
-    this.fetchApiData.addFavoriteMovie(id).subscribe(
+  removeFromFavorites(id: string): void {
+    this.fetchApiData.deleteFavoriteMovie(id).subscribe(
       (resp: any) => {
-        this.favorites.push(id);
-        const movieTitle = this.movies.find(movie => movie._id === id)?.title;
-        this.snackBar.open(`${movieTitle} was added to your list of favorites`, "OK", {
+        this.favorites = this.favorites.filter(favId => favId !== id);
+        const movieTitle = this.movie.title;
+        this.snackBar.open(`${movieTitle} was removed from your list of favorites`, "OK", {
           duration: 3000,
+          panelClass: ["custom-snackbar"],
+          verticalPosition: "bottom",
+          horizontalPosition: "center",
         });
+        this.movieRemoved.emit(id);
       },
       (resp) => {
         this.snackBar.open(resp, "ok", {
@@ -122,21 +98,14 @@ export class MovieCardComponent implements OnInit {
     );
   }
 
-  removeFromFavorites(id: string): void {
-    this.fetchApiData.deleteFavoriteMovie(id).subscribe(
-      (resp: any) => {
-        this.favorites = this.favorites.filter(favId => favId !== id);
-        const movieTitle = this.movies.find(movie => movie._id === id)?.title;
-        this.snackBar.open(`${movieTitle} was removed from your favorites list`, "OK", {
-          duration: 3000,
-        });
-      },
-      (resp) => {
-        this.snackBar.open(resp, "ok", {
-          duration: 2000,
-        });
-      }
-    );
+  isFavorite(id: string): boolean {
+    return Array.isArray(this.favorites) && this.favorites.includes(id);
+  }
+
+  getFavorites(): void {
+    this.fetchApiData.getFavoriteMovies().subscribe((resp: any) => {
+      this.favorites = resp.favoriteMovies;
+    });
   }
 
 }

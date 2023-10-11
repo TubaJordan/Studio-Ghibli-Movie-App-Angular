@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError } from "rxjs";
 import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, take, tap } from "rxjs/operators";
 
 const apiURL = "https://moviesapi-4d4b61d9048f.herokuapp.com/";
 
@@ -34,6 +34,9 @@ export class FetchApiDataService {
   //get all movies
   getAllMovies(): Observable<any> {
     const token = localStorage.getItem("token");
+
+    console.log("within getAllMovies function", apiURL + "movies")
+
     return this.http.get(apiURL + "movies", {
       headers: new HttpHeaders({
         Authorization: "Bearer " + token,
@@ -75,11 +78,22 @@ export class FetchApiDataService {
   getOneUser(): Observable<any> {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
     const token = localStorage.getItem("token");
-    return this.http.get(apiURL + `users/${user}`, {
-      headers: new HttpHeaders({
-        Authorization: "Bearer" + token,
+    const url = apiURL + "users/" + user.username;
+
+    const headers = new HttpHeaders({
+      Authorization: "Bearer " + token,
+    });
+
+    return this.http.get(url, { headers }).pipe(
+      tap((response: any) => {
+        console.log("API Response:", response);
       }),
-    }).pipe(map(this.extractResponseData), catchError(this.handleError));
+      map(this.extractResponseData),
+      catchError((error) => {
+        console.error("API Error:", error);
+        return this.handleError(error);
+      })
+    );
   }
 
   //get favorite movies
@@ -90,23 +104,6 @@ export class FetchApiDataService {
     console.log("getFavoriteMovies", apiURL + "users/" + user.username)
 
     return this.http.get(apiURL + 'users/' + user.username, {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + token,
-      })
-    }).pipe(map(this.extractResponseData), catchError(this.handleError))
-  }
-
-  //add to favorites
-  addFavoriteMovie(movieId: string): Observable<any> {
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
-    const token = localStorage.getItem('token');
-
-    console.log("user log", user);
-    console.log("user.username", user.username);
-
-    console.log("URL test", (apiURL + "users/" + user.username + "/movies/" + movieId));
-
-    return this.http.post(apiURL + "users/" + user.username + "/movies/" + movieId, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
@@ -129,31 +126,40 @@ export class FetchApiDataService {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
 
-    console.log("user log", user);
-    console.log("user.username log", user.username);
-    console.log("Is the URL correct", (apiURL + 'users/' + user.username));
-    console.log("token", token);
-    console.log("type check, user.username", typeof user.username)
-    console.log("type check, user", typeof user)
+    const headers = new HttpHeaders({
+      "Authorization": `Bearer ${token}`
+    });
 
-    return this.http.delete(apiURL + 'users/' + user.username, {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + token,
-      })
-    }).pipe((map(this.extractResponseData), catchError(this.handleError)));
+    return this.http.delete(apiURL + 'users/' + user.username, { headers: headers, responseType: 'text' })
+      .pipe(take(1), catchError(this.handleError));
   }
 
 
-  //delete favorite movie
+  //add to favorites
+  addFavoriteMovie(movieId: string): Observable<any> {
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    const token = localStorage.getItem("token");
+
+    const headers = new HttpHeaders({
+      "Authorization": `Bearer ${token}`
+    });
+
+    return this.http.post(apiURL + "users/" + user.username + "/movies/" + movieId, {}, { headers: headers })
+      .pipe(map(this.extractResponseData), catchError(this.handleError))
+  }
+
   deleteFavoriteMovie(movieId: string): Observable<any> {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    const token = localStorage.getItem('token');
-    return this.http.delete(apiURL + "users/" + user + "/movies/" + movieId, {
-      headers: new HttpHeaders({
-        Authorization: "Bearer " + token
-      })
-    }).pipe(map(this.extractResponseData), catchError(this.handleError));
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    const token = localStorage.getItem("token");
+
+    const headers = new HttpHeaders({
+      "Authorization": `Bearer ${token}`
+    });
+
+    return this.http.delete(apiURL + "users/" + user.username + "/movies/" + movieId, { headers: headers })
+      .pipe(map(this.extractResponseData), catchError(this.handleError))
   }
+
 
 
   private extractResponseData(res: any): any {
@@ -161,18 +167,37 @@ export class FetchApiDataService {
     return body || {};
   }
 
+  // private handleError(error: HttpErrorResponse): any {
+  //   if (error.error instanceof ErrorEvent) {
+  //     console.error('Some error occurred:', error.error.message);
+  //   }
+  //   else if (error.error.errors) {
+  //     return throwError(() => new Error(error.error.errors[0].msg));
+  //   }
+  //   else {
+  //     console.error(
+  //       `Error Status code ${error.status}, ` +
+  //       `Error body is: ${error.error}`);
+  //   }
+  //   return throwError(() => new Error('Something bad happened; please try again later.'));
+  // }
+
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
-      console.error('Some error occurred:', error.error.message);
+      // Client-side or network error
+      console.error('Client side error:', error.error.message);
+    } else {
+      // Backend error. Check if there are specific errors, and log them.
+      if (error.error.errors) {
+        console.error('Backend error details:', error.error.errors);
+        return throwError(() => new Error(error.error.errors[0].msg));
+      } else {
+        console.error(
+          `Backend returned code ${error.status}, body was: `, error.error);
+      }
     }
-    else if (error.error.errors) {
-      return throwError(() => new Error(error.error.errors[0].msg));
-    }
-    else {
-      console.error(
-        `Error Status code ${error.status}, ` +
-        `Error body is: ${error.error}`);
-    }
+
+    // Provide a user-friendly error message for the UI:
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 

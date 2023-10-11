@@ -10,3 +10,38 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background-color: rgb(199, 196, 186);
 }
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    background-color: rgb(236, 233, 224) !important;
+    border: 4px solid rgb(46, 46, 46) !important;
+    border-radius: 0 !important;
+
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__label {
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+    color: rgb(46, 46, 46) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+    color: rgb(46, 46, 46) !important;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-size: 20px !important;
+}
+
+.mat-mdc-button .mat-mdc-button-touch-target {
+    margin-top: 50px;
+}
+
+.mat-mdc-snack-bar-actions.mdc-snackbar__actions.ng-star-inserted {
+    margin: 10px !important;
+    border: 2px solid rgb(46, 46, 46) !important;
+    background-color: rgb(199, 196, 186) !important;
+}
+
+.mat-mdc-snack-bar-actions.mdc-snackbar__actions.ng-star-inserted:hover {
+    background-color: rgba(107, 104, 92, 0.829) !important;
+}

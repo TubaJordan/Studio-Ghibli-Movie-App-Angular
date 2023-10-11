@@ -25,11 +25,25 @@
     <div>
         <div class="favorites-movie-container">
             <h1 style="margin-top : 60px">Your Favorite Movies</h1>
-            <ul class="favorite-movies-list">
-                <li *ngfor="let movieTitle of favoriteMoviesByTitle;" class="favorite-movies-list-element">
+            <div class="favorite-card-list">
+
+                <!-- <app-favorite-movie-card *ngFor="let favoriteMovie of favoriteMovies"
+                    [movie]="favoriteMovie"></app-favorite-movie-card> -->
+
+                <app-favorite-movie-card *ngFor="let favoriteMovie of favoriteMovies" [movie]="favoriteMovie"
+                    (movieRemoved)="handleMovieRemoved($event)">
+                </app-favorite-movie-card>
+
+
+
+
+            </div>
+            <!-- <ul>
+                <li *ngFor="let movieTitle of favoriteMoviesByTitle;" class="favorite-movies-list-element">
                     {{movieTitle}}
                 </li>
-            </ul>
+                <li>test</li>
+            </ul> -->
         </div>
     </div>
 
