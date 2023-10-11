@@ -48,11 +48,11 @@
 }
 
 .update-button:hover {
-    background-color: rgba(107, 104, 92, 0.829);
+    background-color: rgb(221, 218, 210);
 }
 
 .delete-button:hover {
-    background-color: rgb(236, 202, 202)
+    background-color: rgb(236, 202, 202);
 }
 
 

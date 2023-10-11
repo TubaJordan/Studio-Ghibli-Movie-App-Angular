@@ -115,13 +115,13 @@ export class ProfileViewComponent implements OnInit {
 
   openUserUpdateDialog(): void {
     this.dialog.open(UpdateUserComponent, {
-      width: "280px",
+      width: "350px",
     });
   }
 
   openDeleteUserDialog(): void {
     this.dialog.open(DeleteUserComponent, {
-      width: "280px",
+      width: "350px",
     });
   }
 

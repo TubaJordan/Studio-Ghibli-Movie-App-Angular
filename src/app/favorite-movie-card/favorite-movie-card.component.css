@@ -1,6 +1,5 @@
 .movie-card-box {
     margin: 20px;
-    /* margin-top: 75px; */
     display: grid;
     grid-template-columns: repeat(auto-fill, 450px);
     grid-auto-rows: auto;
@@ -98,7 +97,6 @@ img {
 @media screen and (max-width: 768px) {
     .movie-card-box {
         margin: 20px;
-        /* margin-top: 130px; */
         display: grid;
         grid-template-columns: repeat(auto-fill, 350px);
         grid-auto-rows: auto;

@@ -108,9 +108,20 @@ export class MovieCardComponent implements OnInit {
     this.fetchApiData.getOneDirector(name).subscribe((resp: any) => {
       this.director = resp;
 
+      console.log("API Response for Director (from MovieCard):", resp);
+      console.log("this.director", this.director);
+
       if (this.director.director.deathyear === 0) {
         this.director.director.deathyear = "Still alive"
       }
+
+      console.log("Director Data being sent to dialog:", {
+        title: title,
+        name: name,
+        bio: this.director.director.bio,
+        birthyear: this.director.director.birthyear,
+        deathyear: this.director.director.deathyear
+      });
 
       this.dialog.open(DirectorViewComponent, {
         data: {

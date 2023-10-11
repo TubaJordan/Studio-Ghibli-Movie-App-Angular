@@ -26,7 +26,7 @@ export class DeleteUserComponent implements OnInit {
         localStorage.clear();
         this.dialogRef.close();
         this.router.navigate(["welcome"]);
-        this.snackBar.open("Account has been deleted", "OK", {
+        this.snackBar.open("Your account has been deleted", "OK", {
           duration: 3000,
         });
       },

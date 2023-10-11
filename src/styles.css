@@ -53,3 +53,7 @@ body {
     width: auto !important;
     margin-top: 0 !important;
 }
+
+.delete-user-container {
+    border-radius: 0 !important;
+}

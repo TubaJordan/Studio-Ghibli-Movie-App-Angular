@@ -1,17 +1,28 @@
 <mat-card class="delete-user-container">
+
     <mat-card-header class="delete-user-header">
-        <mat-card-title>Are you sure you want to delete your account?</mat-card-title>
+        <mat-card-title class="delete-dialog-title">
+            Are you sure you want to
+            <span class="delete-word">delete</span>
+            your account?
+        </mat-card-title>
     </mat-card-header>
+
     <mat-card-content class="warning-text">
-        <p>This action cannot be undone.</p>
-        <p>Once deleted all your data will be lost.</p>
+        <p class="text-body">This action cannot be undone.</p>
+        <p class="text-body">Once deleted, all your data will be lost.</p>
     </mat-card-content>
+
     <mat-card-actions class="delete-user-button-container">
-        <button mat-raised-button (click)="closeDialog()" color="primary">
+
+        <button (click)="closeDialog()" class="no-button">
             No
         </button>
-        <button mat-raised-button (click)="deleteUser()" color="warn">
+
+        <button (click)="deleteUser()" class="yes-button">
             Yes
         </button>
+
     </mat-card-actions>
+
 </mat-card>

@@ -17,7 +17,7 @@ export class FetchApiDataService {
 
   //user registration
   public userRegistration(userDetails: any): Observable<any> {
-    return this.http.post(apiURL + "users", userDetails).pipe(
+    return this.http.post(apiURL + "users", userDetails, { responseType: "text" }).pipe(
       catchError(this.handleError)
     )
   }
@@ -112,6 +112,13 @@ export class FetchApiDataService {
     }).pipe(map(this.extractResponseData), catchError(this.handleError))
   }
 
+  login(userData: any): Observable<any> {
+    return this.http.post(apiURL + 'login', userData).pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+    );
+  }
+
   // delete user
   deleteUser(): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -173,22 +180,45 @@ export class FetchApiDataService {
   //   return throwError(() => new Error('Something bad happened; please try again later.'));
   // }
 
+  // private handleError(error: HttpErrorResponse): any {
+  //   if (error.error instanceof ErrorEvent) {
+
+  //     console.error('Client side error:', error.error.message);
+  //   } else {
+
+  //     if (error.error.errors) {
+  //       console.error('Backend error details:', error.error.errors);
+  //       return throwError(() => new Error(error.error.errors[0].msg));
+  //     } else {
+  //       console.error(
+  //         `Backend returned code ${error.status}, body was: `, error.error);
+  //     }
+  //   }
+
+  //   return throwError(() => new Error('Something bad happened; please try again later.'));
+  // }
+
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
-      // Client-side or network error
+      // A client-side error occurred
       console.error('Client side error:', error.error.message);
     } else {
-      // Backend error. Check if there are specific errors, and log them.
+      // Check if the backend returned structured error data
       if (error.error.errors) {
         console.error('Backend error details:', error.error.errors);
         return throwError(() => new Error(error.error.errors[0].msg));
+      }
+      // Handle plain text error response
+      else if (typeof error.error === 'string') {
+        console.error(`Backend returned code ${error.status}, body was: `, error.error);
+        return throwError(() => new Error(error.error));
       } else {
         console.error(
           `Backend returned code ${error.status}, body was: `, error.error);
       }
     }
 
-    // Provide a user-friendly error message for the UI:
+    // Default error message
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
