@@ -32,6 +32,7 @@ import { GenreViewComponent } from './genre-view/genre-view.component';
 import { SummaryViewComponent } from './summary-view/summary-view.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { FavoriteMovieCardComponent } from './favorite-movie-card/favorite-movie-card.component';
+import { MatSelectModule } from "@angular/material/select";
 
 
 const appRoutes: Routes = [
@@ -72,6 +73,7 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     MatIconModule,
     MatToolbarModule,
+    MatSelectModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

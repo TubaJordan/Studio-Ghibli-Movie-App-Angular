@@ -13,9 +13,10 @@ body {
 
 .mat-mdc-snack-bar-container .mdc-snackbar__surface {
     background-color: rgb(236, 233, 224) !important;
-    border: 4px solid rgb(46, 46, 46) !important;
+    border: 2px solid rgb(46, 46, 46) !important;
     border-radius: 0 !important;
-
+    box-shadow: 8px 8px 9px rgb(46, 46, 46) !important;
+    margin-bottom: 10px;
 }
 
 .mat-mdc-snack-bar-container .mdc-snackbar__label {
@@ -29,7 +30,7 @@ body {
 .mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
     color: rgb(46, 46, 46) !important;
     font-family: 'Alegreya Sans SC', sans-serif;
-    font-size: 20px !important;
+    font-size: 16px !important;
 }
 
 .mat-mdc-button .mat-mdc-button-touch-target {
@@ -44,4 +45,11 @@ body {
 
 .mat-mdc-snack-bar-actions.mdc-snackbar__actions.ng-star-inserted:hover {
     background-color: rgba(107, 104, 92, 0.829) !important;
+}
+
+
+.nav-bar a span.mat-mdc-button-touch-target {
+    height: 36px !important;
+    width: auto !important;
+    margin-top: 0 !important;
 }

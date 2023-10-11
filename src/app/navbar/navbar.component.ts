@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { SortService } from '../sort.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,11 @@ export class NavbarComponent implements OnInit {
   public username: string = "";
   public imagePath: string = "/assets/top-logo.png"
 
-  constructor(public router: Router, public dialog: MatDialog) { }
+  constructor(
+    public router: Router,
+    public dialog: MatDialog,
+    private sortService: SortService,
+  ) { }
 
   ngOnInit(): void {
     this.username = JSON.parse(localStorage.getItem("user")!).username;
@@ -32,6 +37,11 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     this.router.navigate(["welcome"]);
+  }
+
+  onSortChange(event: any) {
+    const selectedValue = event.target.value;
+    this.sortService.changeSortOrder(selectedValue);
   }
 
 }

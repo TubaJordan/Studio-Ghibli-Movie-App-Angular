@@ -8,16 +8,19 @@
             <div class="profile-container">
                 <h1>User Profile</h1>
                 <div class="user-profile-info">
-                    <p>Username: {{user.username}}</p>
-                    <p>E-mail: {{user.email}}</p>
-                    <p>Birth date: {{user.birthDate.slice(0,10)}}</p>
+                    <p><span class="field-highlight">Username: </span>{{user.username}}</p>
+                    <p><span class="field-highlight">E-mail: </span>{{user.email}}</p>
+                    <p><span class="field-highlight">Birth date: </span>{{user.birthDate.slice(0,10)}}</p>
                 </div>
             </div>
 
-            <button type="button" (click)="openUserUpdateDialog()" class="profile-form-button update-button">Update
-                User</button>
-            <button type="button" (click)="openDeleteUserDialog()" class="profile-form-button delete-button">Delete
-                User</button>
+            <div class="profile-button-container">
+                <button type="button" (click)="openUserUpdateDialog()" class="profile-form-button update-button">Update
+                    User</button>
+
+                <button type="button" (click)="openDeleteUserDialog()" class="profile-form-button delete-button">Delete
+                    User</button>
+            </div>
 
         </div>
     </div>
@@ -27,23 +30,12 @@
             <h1 style="margin-top : 60px">Your Favorite Movies</h1>
             <div class="favorite-card-list">
 
-                <!-- <app-favorite-movie-card *ngFor="let favoriteMovie of favoriteMovies"
-                    [movie]="favoriteMovie"></app-favorite-movie-card> -->
-
                 <app-favorite-movie-card *ngFor="let favoriteMovie of favoriteMovies" [movie]="favoriteMovie"
                     (movieRemoved)="handleMovieRemoved($event)">
                 </app-favorite-movie-card>
 
-
-
-
             </div>
-            <!-- <ul>
-                <li *ngFor="let movieTitle of favoriteMoviesByTitle;" class="favorite-movies-list-element">
-                    {{movieTitle}}
-                </li>
-                <li>test</li>
-            </ul> -->
+
         </div>
     </div>
 

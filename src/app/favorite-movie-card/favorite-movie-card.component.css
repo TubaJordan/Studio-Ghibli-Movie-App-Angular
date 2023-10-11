@@ -89,6 +89,12 @@ img {
     margin: 0;
 }
 
+.favorite-button {
+    color: rgb(184, 31, 31);
+    transform: scale(1.3);
+    transition: all 5s ease-in-out;
+}
+
 @media screen and (max-width: 768px) {
     .movie-card-box {
         margin: 20px;

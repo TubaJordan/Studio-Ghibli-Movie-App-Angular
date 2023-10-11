@@ -15,6 +15,7 @@ export class SummaryViewComponent {
     public data: {
       title: string;
       summary: string;
+      release: number;
     }
   ) { }
 

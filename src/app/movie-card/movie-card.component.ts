@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GenreViewComponent } from '../genre-view/genre-view.component';
 import { SummaryViewComponent } from '../summary-view/summary-view.component';
+import { SortService } from '../sort.service';
 
 @Component({
   selector: 'app-movie-card',
@@ -27,7 +28,8 @@ export class MovieCardComponent implements OnInit {
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private sortService: SortService,
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +37,35 @@ export class MovieCardComponent implements OnInit {
       this.getMovies();
     }
     this.getFavorites();
+
+    this.sortService.sortOrder$.subscribe(order => {
+      this.sortMoviesBasedOnMethod(order);
+    });
+  }
+
+  sortMoviesBasedOnMethod(order: string) {
+    switch (order) {
+      case 'A-Z':
+        this.movies.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case 'Z-A':
+        this.movies.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+      case 'genre':
+        this.movies.sort((a, b) => a.genre.name.localeCompare(b.genre.name));
+        break;
+      case 'director':
+        this.movies.sort((a, b) => a.director.name.localeCompare(b.director.name));
+        break;
+      case 'releaseYearOldToNew':
+        this.movies.sort((a, b) => a.releaseYear - b.releaseYear);
+        break;
+      case 'releaseYearNewToOld':
+        this.movies.sort((a, b) => b.releaseYear - a.releaseYear);
+        break;
+      default:
+        break;
+    }
   }
 
   getMovies(): void {
@@ -100,6 +131,7 @@ export class MovieCardComponent implements OnInit {
         data: {
           title: title,
           summary: this.movie.description,
+          release: this.movie.releaseYear,
         },
       });
     });

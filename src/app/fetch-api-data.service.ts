@@ -17,7 +17,6 @@ export class FetchApiDataService {
 
   //user registration
   public userRegistration(userDetails: any): Observable<any> {
-    console.log(userDetails);
     return this.http.post(apiURL + "users", userDetails).pipe(
       catchError(this.handleError)
     )
@@ -25,7 +24,6 @@ export class FetchApiDataService {
 
   //user login
   public userLogin(userDetails: any): Observable<any> {
-    console.log(userDetails);
     return this.http.post(apiURL + "login", userDetails).pipe(
       catchError(this.handleError)
     )
@@ -34,9 +32,6 @@ export class FetchApiDataService {
   //get all movies
   getAllMovies(): Observable<any> {
     const token = localStorage.getItem("token");
-
-    console.log("within getAllMovies function", apiURL + "movies")
-
     return this.http.get(apiURL + "movies", {
       headers: new HttpHeaders({
         Authorization: "Bearer " + token,
@@ -86,7 +81,6 @@ export class FetchApiDataService {
 
     return this.http.get(url, { headers }).pipe(
       tap((response: any) => {
-        console.log("API Response:", response);
       }),
       map(this.extractResponseData),
       catchError((error) => {
@@ -100,9 +94,6 @@ export class FetchApiDataService {
   getFavoriteMovies(): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
-
-    console.log("getFavoriteMovies", apiURL + "users/" + user.username)
-
     return this.http.get(apiURL + 'users/' + user.username, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,

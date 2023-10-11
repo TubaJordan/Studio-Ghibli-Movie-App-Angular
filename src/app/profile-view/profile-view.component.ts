@@ -6,6 +6,7 @@ import { DeleteUserComponent } from '../delete-user/delete-user.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateUserComponent } from '../update-user/update-user.component';
 import { FavoriteMovieCardComponent } from '../favorite-movie-card/favorite-movie-card.component';
+import { SortService } from '../sort.service';
 
 @Component({
   selector: 'app-profile-view',
@@ -24,7 +25,8 @@ export class ProfileViewComponent implements OnInit {
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
     public router: Router,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private sortService: SortService,
   ) { }
 
   favoriteMovies: any[] = [];
@@ -36,6 +38,40 @@ export class ProfileViewComponent implements OnInit {
     } else {
       this.router.navigate(["welcome"]);
     }
+
+    this.sortService.sortOrder$.subscribe(order => {
+      this.sortFavoritesBasedOnMethod(order);
+    });
+  }
+
+  sortFavoritesBasedOnMethod(order: string) {
+    switch (order) {
+      case 'A-Z':
+        this.favoriteMovies.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case 'Z-A':
+        this.favoriteMovies.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+      case 'genre':
+        this.favoriteMovies.sort((a, b) => a.genre.name.localeCompare(b.genre.name));
+        break;
+      case 'director':
+        this.favoriteMovies.sort((a, b) => a.director.name.localeCompare(b.director.name));
+        break;
+      case 'releaseYearOldToNew':
+        this.favoriteMovies.sort((a, b) => a.releaseYear - b.releaseYear);
+        break;
+      case 'releaseYearNewToOld':
+        this.favoriteMovies.sort((a, b) => b.releaseYear - a.releaseYear);
+        break;
+      default:
+        break;
+    }
+  }
+
+  onSortChange(event: any) {
+    const selectedValue = event.target.value;
+    this.sortService.changeSortOrder(selectedValue);
   }
 
   getMovieByTitle(movieTitle: string): any {
