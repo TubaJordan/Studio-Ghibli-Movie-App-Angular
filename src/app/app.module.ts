@@ -34,6 +34,8 @@ import { UpdateUserComponent } from './update-user/update-user.component';
 import { FavoriteMovieCardComponent } from './favorite-movie-card/favorite-movie-card.component';
 import { MatSelectModule } from "@angular/material/select";
 
+import { NgSelectModule } from '@ng-select/ng-select';
+
 
 const appRoutes: Routes = [
   { path: "welcome", component: WelcomePageComponent },
@@ -74,6 +76,7 @@ const appRoutes: Routes = [
     MatIconModule,
     MatToolbarModule,
     MatSelectModule,
+    NgSelectModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
