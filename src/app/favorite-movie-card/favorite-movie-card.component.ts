@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { GenreViewComponent } from '../genre-view/genre-view.component';
 import { SummaryViewComponent } from '../summary-view/summary-view.component';
 
+
 @Component({
   selector: 'app-favorite-movie-card',
   templateUrl: './favorite-movie-card.component.html',

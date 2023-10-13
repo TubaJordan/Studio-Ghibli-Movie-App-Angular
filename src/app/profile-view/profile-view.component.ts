@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { DeleteUserComponent } from '../delete-user/delete-user.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateUserComponent } from '../update-user/update-user.component';
-import { FavoriteMovieCardComponent } from '../favorite-movie-card/favorite-movie-card.component';
 import { SortService } from '../sort.service';
+
 
 @Component({
   selector: 'app-profile-view',

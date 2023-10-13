@@ -8,7 +8,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./summary-view.component.css']
 })
 
-
 export class SummaryViewComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA)

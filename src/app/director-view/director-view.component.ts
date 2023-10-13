@@ -8,7 +8,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./director-view.component.css']
 })
 
-
 export class DirectorViewComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA)
@@ -20,4 +19,5 @@ export class DirectorViewComponent {
       deathyear: string;
     }
   ) { }
+
 }

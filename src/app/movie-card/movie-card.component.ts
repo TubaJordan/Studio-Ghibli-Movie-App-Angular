@@ -8,6 +8,7 @@ import { GenreViewComponent } from '../genre-view/genre-view.component';
 import { SummaryViewComponent } from '../summary-view/summary-view.component';
 import { SortService } from '../sort.service';
 
+
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -93,7 +94,6 @@ export class MovieCardComponent implements OnInit {
   isFavorite(id: string): boolean {
     return Array.isArray(this.favorites) && this.favorites.includes(id);
   }
-
 
   openGenre(name: string, title: string, description: string): void {
     this.fetchApiData.getOneGenre(name).subscribe((resp: any) => {
