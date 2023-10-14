@@ -4,7 +4,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 
-
+/**
+ * Component for the update user component.
+ */
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
@@ -13,6 +15,10 @@ import { Router } from '@angular/router';
 
 export class UpdateUserComponent implements OnInit {
   submittedData: any = {};
+
+  /**
+   * Input decorator to bind data passed to the component.
+   */
   @Input() updatedUserData = {
     username: '',
     password: '',
@@ -21,6 +27,13 @@ export class UpdateUserComponent implements OnInit {
     birthDate: '',
   };
 
+  /**
+   * Constructor for the UpdateUserComponent.
+   * @param fetchApiData - Service for making API calls.
+   * @param dialogRef - Reference to the opened dialog.
+   * @param snackBar - Service for displaying notification messages.
+   * @param router - Service for navigating between routes.
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UpdateUserComponent>,
@@ -28,8 +41,15 @@ export class UpdateUserComponent implements OnInit {
     public router: Router
   ) { }
 
+  /**
+   * Angular lifecycle hook that initializes the component.
+   * This method is called once the component is initialized.
+   */
   ngOnInit(): void { }
 
+  /**
+   * Review and trim the data before submitting.
+   */
   reviewData(): void {
     const oldData = this.updatedUserData;
     if (oldData.username) {
@@ -46,6 +66,9 @@ export class UpdateUserComponent implements OnInit {
     }
   }
 
+  /**
+   * Method to update the user's details.
+   */
   updateUser(): void {
     if (this.updatedUserData.password !== this.updatedUserData.confirmPassword) {
       this.snackBar.open('Passwords do not match, please try again', 'OK', {

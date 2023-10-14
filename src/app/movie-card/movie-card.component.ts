@@ -8,7 +8,9 @@ import { GenreViewComponent } from '../genre-view/genre-view.component';
 import { SummaryViewComponent } from '../summary-view/summary-view.component';
 import { SortService } from '../sort.service';
 
-
+/**
+ * Component for displaying a movie card.
+ */
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -16,15 +18,34 @@ import { SortService } from '../sort.service';
 })
 
 export class MovieCardComponent implements OnInit {
+
+  /** Input property for the movie data. */
   @Input() movie: any
 
+  /** Input property to determine if all movies should be fetched. Default is true. */
   @Input() fetchAll: boolean = true;
 
+  /** Array to store movies data. */
   movies: any[] = [];
+
+  /** Stores the selected genre. */
   genre: any = "";
+
+  /** Stores the selected director. */
   director: any = "";
+
+  /** Array to store favorite movies. */
   favorites: any[] = [];
 
+  /**
+   * Constructor for the MovieCardComponent.
+   *
+   * @param fetchApiData Service for fetching API data.
+   * @param dialog Service to handle dialog interactions.
+   * @param snackBar Service to handle snackbar notifications.
+   * @param router Service to handle routing.
+   * @param sortService Service for sorting movies.
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -33,6 +54,10 @@ export class MovieCardComponent implements OnInit {
     private sortService: SortService,
   ) { }
 
+  /**
+   * Angular lifecycle hook that initializes the component.
+   * This method is called once the component is initialized.
+   */
   ngOnInit(): void {
     if (!localStorage.getItem("user") || !localStorage.getItem("token")) {
       this.router.navigate(["welcome"]);
@@ -48,6 +73,11 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Sort movies based on a specific order.
+   * 
+   * @param order Sorting criteria.
+   */
   sortMoviesBasedOnMethod(order: string) {
     switch (order) {
       case 'A-Z':
@@ -73,6 +103,9 @@ export class MovieCardComponent implements OnInit {
     }
   }
 
+  /**
+   * Fetch all movies.
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -85,16 +118,32 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Fetch favorite movies for the user.
+   */
   getFavorites(): void {
     this.fetchApiData.getFavoriteMovies().subscribe((resp: any) => {
       this.favorites = resp.favoriteMovies;
     });
   }
 
+  /**
+   * Determine if a movie is in the favorites list.
+   * 
+   * @param id Movie ID.
+   * @returns True if movie is a favorite, false otherwise.
+   */
   isFavorite(id: string): boolean {
     return Array.isArray(this.favorites) && this.favorites.includes(id);
   }
 
+  /**
+   * Display the genre details in a dialog.
+   * 
+   * @param name Genre name.
+   * @param title Movie title.
+   * @param description Genre description.
+   */
   openGenre(name: string, title: string, description: string): void {
     this.fetchApiData.getOneGenre(name).subscribe((resp: any) => {
       this.genre = resp;
@@ -108,6 +157,12 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Display the director details in a dialog.
+   * 
+   * @param name Director name.
+   * @param title Movie title.
+   */
   openDirector(name: string, title: string): void {
     this.fetchApiData.getOneDirector(name).subscribe((resp: any) => {
       this.director = resp;
@@ -126,6 +181,11 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Display movie summary in a dialog.
+   * 
+   * @param title Movie title.
+   */
   openSummary(title: string): void {
     this.fetchApiData.getOneMovie(title).subscribe((resp: any) => {
       this.movie = resp;
@@ -139,6 +199,11 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Add a movie to the favorites list.
+   * 
+   * @param id Movie ID.
+   */
   addToFavorites(id: string): void {
     this.fetchApiData.addFavoriteMovie(id).subscribe(
       (resp: any) => {
@@ -156,6 +221,11 @@ export class MovieCardComponent implements OnInit {
     );
   }
 
+  /**
+   * Remove a movie from the favorites list.
+   * 
+   * @param id Movie ID.
+   */
   removeFromFavorites(id: string): void {
     this.fetchApiData.deleteFavoriteMovie(id).subscribe(
       (resp: any) => {

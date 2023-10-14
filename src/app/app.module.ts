@@ -29,7 +29,9 @@ import { FavoriteMovieCardComponent } from './favorite-movie-card/favorite-movie
 import { MatSelectModule } from "@angular/material/select";
 import { NgSelectModule } from '@ng-select/ng-select';
 
-
+/**
+ * Defining the routes for the application.
+ */
 const appRoutes: Routes = [
   { path: "welcome", component: WelcomePageComponent },
   { path: "movies", component: MovieCardComponent },
@@ -37,7 +39,9 @@ const appRoutes: Routes = [
   { path: "", redirectTo: "welcome", pathMatch: "prefix" },
 ];
 
-
+/**
+ * NgModule decorator providing metadata about the AppModule.
+ */
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,4 +80,7 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 
+/**
+ * AppModule class which serves as the main module for the application.
+ */
 export class AppModule { }

@@ -1,0 +1,31 @@
+{
+    "out": "./docs",
+    "entryPoints": [
+        "src/main.ts",
+        "src/app/delete-user/delete-user.component.ts",
+        "src/app/director-view/director-view.component.ts",
+        "src/app/favorite-movie-card/favorite-movie-card.component.ts",
+        "src/app/genre-view/genre-view.component.ts",
+        "src/app/movie-card/movie-card.component.ts",
+        "src/app/navbar/navbar.component.ts",
+        "src/app/profile-view/profile-view.component.ts",
+        "src/app/summary-view/summary-view.component.ts",
+        "src/app/update-user/update-user.component.ts",
+        "src/app/user-login-form/user-login-form.component.ts",
+        "src/app/user-registration-form/user-registration-form.component.ts",
+        "src/app/welcome-page/welcome-page.component.ts",
+        "src/app/app-routing.module.ts",
+        "src/app/app.component.ts",
+        "src/app/fetch-api-data.service.ts",
+        "src/app/sort.service.ts",
+    ],
+    "exclude": [
+        "**/*.spec.ts"
+    ],
+    "name": "myFlix-Angular-client",
+    "theme": "default",
+    "excludeExternals": true,
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "readme": "none"
+}
