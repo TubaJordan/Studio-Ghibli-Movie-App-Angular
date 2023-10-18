@@ -6,7 +6,7 @@ This application is a user-friendly and visually pleasing app that allows users 
 
 ## Live Site
 
-[Click here for the Live Site](https://)
+[Click here for the Live Site](https://tubajordan.github.io/myFlix-Angular-client/welcome)
 
 ## Project Dependencies
 
