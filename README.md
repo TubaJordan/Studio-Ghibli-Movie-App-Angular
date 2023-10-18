@@ -18,7 +18,7 @@ This application offers a vibrant interface allowing users to navigate through v
 
 ## Live Demo
 
-Experience the application in action [here](https://tubajordan.github.io/myFlix-Angular-client/welcome).
+[Click here for the Live Site](https://tubajordan.github.io/myFlix-Angular-client/welcome).
 
 ## Features
 
