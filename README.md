@@ -1,50 +1,72 @@
 # Studio Ghibli Movie App (Angular Version)
 
-## Project Description
+## Table of Contents
+- [Overview](#overview)
+- [Live Demo](#live-demo)
+- [Features](#features)
+- [Built With](#built-with)
+- [API Used](#api-used)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Development](#development)
+  - [Testing](#testing)
+- [Additional Resources](#additional-resources)
 
-This application is a user-friendly and visually pleasing app that allows users to browse, sort, and favorite different movies created or produced by Studio Ghibli. The interface is clean, intuitive, and responsive across all platforms, including mobile, desktop, and screen readers. To utilize the app's features, users must create an account. Once registered, they can save their favorite movies, update profile information, and delete their account if desired. A user-friendly navigation bar offers features like sorting movies, accessing profile details, returning to the main screen, and logging out.
+## Overview
 
-## Live Site
+This application offers a vibrant interface allowing users to navigate through various movies produced by Studio Ghibli. The seamless design is adaptive across different devices, ensuring an impeccable user experience, whether accessed through mobile, desktop, or screen readers. Users can register to unlock features like favoriting movies, updating their profiles, and more.
 
-[Click here for the Live Site](https://)
+## Live Demo
 
-## Project Dependencies
+[Click here for the Live Site](https://tubajordan.github.io/myFlix-Angular-client/welcome).
 
-- HTML
-- CSS
-- TypeScript
-- Angular 16.2.3
+## Features
 
-## API
+- **User Registration:** Sign up to save your favorite movies and manage your profile.
+- **Intuitive Navigation:** Easily sort movies, access profile details, and log out through the user-friendly navigation bar.
+- **Responsive Design:** Optimized for mobile, desktop, and screen readers.
+- **Movie Details:** Dive into the details of each movie with comprehensive information.
 
-- Ghibli Movie API
+## Built With
 
+- [**Angular**](https://angular.io/) - `16.2.0`
+  - **Animations**
+  - **CDK** - `16.2.6`
+  - **Common**
+  - **Compiler**
+  - **Core**
+  - **Forms**
+  - **Material** - `16.2.6`
+  - **Platform-Browser**
+  - **Platform-Browser-Dynamic**
+  - **Router**
+- [**ng-select**](https://github.com/ng-select/ng-select) - `11.1.1`
+- [**rxjs**](https://rxjs.dev/) - `7.8.0`
+- [**tslib**](https://www.npmjs.com/package/tslib) - `2.3.0`
+- [**zone.js**](https://github.com/angular/zone.js/) - `0.13.0`
+- [**TypeScript**](https://www.typescriptlang.org/) - `5.1.3`
 
+## API Used
 
-## Additional Information
+- [**Ghibli Movie API**](https://github.com/TubaJordan/movie_api)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
+## Getting Started
 
-### Development server
+### Prerequisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+This project was bootstrapped with [Angular CLI](https://github.com/angular/angular-cli) version `16.2.3`.
 
-### Code scaffolding
+### Development
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. **Server Setup:** Use `ng serve` to initiate a dev server. Visit `http://localhost:4200/` to see the app. It auto-reloads with every source file modification.
+2. **Component Generation:** To scaffold a new component, run `ng generate component <component-name>`. Other commands include `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+3. **Building the Project:** Use `ng build` to build the app. The build artifacts will reside in the `dist/` directory.
 
-### Build
+### Testing
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Unit Tests:** Run `ng test` to conduct unit tests through [Karma](https://karma-runner.github.io).
+- **E2E Tests:** Use `ng e2e` to execute end-to-end tests. Ensure you have an end-to-end testing package installed.
 
-### Running unit tests
+### Additional Resources
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-### Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-### Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+For further assistance with Angular CLI, use `ng help` or refer to the [Angular CLI Documentation](https://angular.io/cli).
