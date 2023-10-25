@@ -5,9 +5,11 @@ import { Router } from '@angular/router';
 import { DeleteUserComponent } from '../delete-user/delete-user.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateUserComponent } from '../update-user/update-user.component';
-import { FavoriteMovieCardComponent } from '../favorite-movie-card/favorite-movie-card.component';
 import { SortService } from '../sort.service';
 
+/**
+ * Component for the profile view.
+ */
 @Component({
   selector: 'app-profile-view',
   templateUrl: './profile-view.component.html',
@@ -16,11 +18,21 @@ import { SortService } from '../sort.service';
 
 export class ProfileViewComponent implements OnInit {
 
+  /** Component state properties */
   user: any = {};
   updatedUser: any = {};
   movies: any[] = [];
   favoriteMoviesByTitle: any[] = [];
+  favoriteMovies: any[] = [];
 
+  /**
+   * Constructor for the ProfileViewComponent.
+   * @param fetchApiData - Service to fetch data from API
+   * @param dialog - Material dialog service
+   * @param router - Angular router
+   * @param snackBar - Material snackbar service
+   * @param sortService - Service to handle sorting logic
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -29,8 +41,10 @@ export class ProfileViewComponent implements OnInit {
     private sortService: SortService,
   ) { }
 
-  favoriteMovies: any[] = [];
-
+  /**
+   * Angular lifecycle hook that initializes the component.
+   * This method is called once the component is initialized.
+   */
   ngOnInit(): void {
     if (localStorage.getItem("user") && localStorage.getItem("token")) {
       this.user = JSON.parse(localStorage.getItem("user")!);
@@ -44,6 +58,10 @@ export class ProfileViewComponent implements OnInit {
     });
   }
 
+  /**
+   * Method to sort favorite movies based on provided order.
+   * @param order - String defining the order type
+   */
   sortFavoritesBasedOnMethod(order: string) {
     switch (order) {
       case 'A-Z':
@@ -69,15 +87,21 @@ export class ProfileViewComponent implements OnInit {
     }
   }
 
+  /** Event handler for sort change event */
   onSortChange(event: any) {
     const selectedValue = event.target.value;
     this.sortService.changeSortOrder(selectedValue);
   }
 
+  /**
+   * Method to get movie by title.
+   * @param movieTitle - Title of the movie to find.
+   */
   getMovieByTitle(movieTitle: string): any {
     return this.movies.find((movie: any) => movie.title === movieTitle);
   }
 
+  /** Method to generate list of favorite movies */
   generateFavoritesList(): void {
     if (this.user && this.user.favoriteMovies) {
       this.fetchApiData.getAllMovies().subscribe((resp: any) => {
@@ -93,6 +117,7 @@ export class ProfileViewComponent implements OnInit {
     }
   }
 
+  /** Method to get user information */
   getUserInfo(): void {
     this.fetchApiData.getOneUser().subscribe(
       (resp: any) => {
@@ -109,16 +134,22 @@ export class ProfileViewComponent implements OnInit {
     );
   }
 
+  /**
+   * Method to handle removal of movie from favorites.
+   * @param removedMovieId - ID of the movie to remove.
+   */
   handleMovieRemoved(removedMovieId: string) {
     this.favoriteMovies = this.favoriteMovies.filter(movie => movie._id !== removedMovieId);
   }
 
+  /** Method to open user update dialog */
   openUserUpdateDialog(): void {
     this.dialog.open(UpdateUserComponent, {
       width: "350px",
     });
   }
 
+  /** Method to open delete user dialog */
   openDeleteUserDialog(): void {
     this.dialog.open(DeleteUserComponent, {
       width: "350px",

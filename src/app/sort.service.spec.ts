@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-
 import { SortService } from './sort.service';
+
 
 describe('SortService', () => {
   let service: SortService;
@@ -13,4 +13,5 @@ describe('SortService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
 });

@@ -1,8 +1,13 @@
 <mat-card class="user-update-container">
+
     <mat-card-header class="user-update-header">
-        <mat-card-title>Update your info here!</mat-card-title>
+        <div class="title-container">
+            <mat-card-title class="update-card-title">Update!</mat-card-title>
+            <mat-card-subtitle class="update-card-subtitle">Update your profile information below!</mat-card-subtitle>
+        </div>
     </mat-card-header>
-    <mat-card-content>
+
+    <mat-card-content class="user-update-form-top">
         <form class="user-update-form">
 
             <mat-form-field>
@@ -11,18 +16,18 @@
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput [(ngModel)]="updatedUserData.password" placeholder="Password" type="password"
+                <input matInput [(ngModel)]="updatedUserData.password" placeholder="Password*" type="password"
                     name="Password" required />
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput [(ngModel)]="updatedUserData.confirmPassword" placeholder="Confirm Password"
+                <input matInput [(ngModel)]="updatedUserData.confirmPassword" placeholder="Confirm Password*"
                     type="password" name="ConfirmPassword" required />
             </mat-form-field>
 
 
             <mat-form-field>
-                <input matInput [(ngModel)]="updatedUserData.email" placeholder="Email" type="email" name="Email" />
+                <input matInput [(ngModel)]="updatedUserData.email" placeholder="Email*" type="email" name="Email" />
             </mat-form-field>
 
             <mat-form-field>
@@ -32,9 +37,15 @@
 
         </form>
     </mat-card-content>
-    <mat-card-actions>
+
+    <div class="required-container">
+        <p class="required-container-p"><span class="star">*</span><span class="required">required</span></p>
+    </div>
+
+    <mat-card-actions class="update-button-container">
         <button class="user-update-button" mat-raised-button (click)="updateUser()" color="primary">
             Update
         </button>
     </mat-card-actions>
+
 </mat-card>
