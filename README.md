@@ -1,5 +1,7 @@
 # Studio Ghibli Movie App (Angular Version)
 
+<img src="https://github.com/TubaJordan/Portfolio/blob/main/images/Angular-Ghibli-Display.png">
+
 ## Table of Contents
 - [Overview](#overview)
 - [Live Demo](#live-demo)
