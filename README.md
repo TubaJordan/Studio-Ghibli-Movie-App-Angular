@@ -20,7 +20,7 @@ This application offers a vibrant interface allowing users to navigate through v
 
 ## Live Demo
 
-[Click here for the Live Site](https://tubajordan.github.io/myFlix-Angular-client/welcome).
+[Click here for the Live Site](https://tubajordan.github.io/Studio-Ghibli-Movie-App-Angular/welcome).
 
 ## Features
 
