@@ -50,7 +50,7 @@ This application offers a vibrant interface allowing users to navigate through v
 
 ## API Used
 
-- [**Ghibli Movie API**](https://github.com/TubaJordan/movie_api)
+- [**Ghibli Movie API**](https://github.com/TubaJordan/Studio-Ghibli-Movie-API)
 
 ## Getting Started
 
